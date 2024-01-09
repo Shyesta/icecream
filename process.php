@@ -22,11 +22,34 @@
         echo "<pre>";
         var_dump($_POST);
         echo "</pre>";
+        if(!empty($_POST['scoops']))
+        {
+            $scoops = $_POST['scoops'];
+        }
+        else{
+            echo "<p>Enter scoops!</p>";
+            return;
+        }
 
-        $scoops = $_POST['scoops'];
-        $flavors = $_POST['flavor'];
+        if(!isset($_POST['flavor']))
+        {
+            echo "<p> Please enter at least one flavor</p>";
+            return;
+        }
+        else
+        {
+            $flavors = $_POST['flavor'];
+        }
         $flavorString = implode(", ", $flavors);
-        $cone = $_POST['cone'];
+        if(!empty($_POST['cone']))
+        {
+            $cone = $_POST['cone'];
+        }
+
+        else{
+            echo "<p>Please choose a cone</p>";
+            return;
+        }
 
         //Calculate the total due
         $subtotal = PRICE_PER_SCOOP * $scoops;
